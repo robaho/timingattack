@@ -9,6 +9,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 )
 
 func main() {
@@ -25,9 +26,10 @@ func main() {
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
+	//now := time.Now()
+
 	// add the following for a short random delay - still far greater than the comparison cost
-	//now := time.Now().Nanosecond()
-	//for i:=0;i<now%100;i++ {
+	//for i:=0;i<now.Nanoseconds()%100;i++ {
 	//	time.Now()
 	//}
 
@@ -37,4 +39,8 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	} else {
 		w.WriteHeader(http.StatusUnauthorized)
 	}
+	// or add the following to ensure min time of 1 us
+	//for time.Now().Sub(now).Nanoseconds()<1000 {
+	//}
+
 }
