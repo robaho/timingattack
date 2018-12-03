@@ -26,14 +26,15 @@ func main() {
 		start := time.Now()
 
 		r, err := http.Get(request)
+
+		end := time.Now()
+
 		if err != nil {
 			panic(err)
 		}
 		if r.StatusCode != http.StatusUnauthorized {
 			log.Fatalln("unexpected status code", r.StatusCode)
 		}
-
-		end := time.Now()
 
 		if i%100 == 0 {
 			fmt.Println("count", i)
