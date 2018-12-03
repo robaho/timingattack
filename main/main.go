@@ -25,9 +25,15 @@ func main() {
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
+	// add the following for a short random delay - still far greater than the comparison cost
+	//now := time.Now().Nanosecond()
+	//for i:=0;i<now%100;i++ {
+	//	time.Now()
+	//}
+
 	guess := r.URL.Query().Get("guess")
 	if "youwillneverguess" == guess {
-		fmt.Fprintln(w,"You guessed it!")
+		fmt.Fprintln(w, "You guessed it!")
 	} else {
 		w.WriteHeader(http.StatusUnauthorized)
 	}
